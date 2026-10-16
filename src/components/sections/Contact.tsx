@@ -30,6 +30,7 @@ export const Contact: React.FC = () => {
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [toastType, setToastType] = useState<'success' | 'error'>('success');
   const [copiedEmail, setCopiedEmail] = useState(false);
 
   const validate = (): boolean => {
@@ -68,18 +69,66 @@ export const Contact: React.FC = () => {
 
     setIsSubmitting(true);
 
-    // Simulate server submission
-    await new Promise((resolve) => setTimeout(resolve, 1200));
+    try {
+      const accessKey = personalInfo.contactFormKey?.trim();
 
-    setIsSubmitting(false);
-    setToastMessage(`Thank you, ${formData.name}! Your message has been sent successfully.`);
-    setFormData({ name: '', email: '', subject: '', message: '' });
-    setErrors({});
+      if (!accessKey) {
+        // Fallback: If access key is not set yet, construct mailto link
+        const mailtoLink = `mailto:${personalInfo.email}?subject=${encodeURIComponent(
+          formData.subject
+        )}&body=${encodeURIComponent(
+          `From: ${formData.name} (${formData.email})\n\nMessage:\n${formData.message}`
+        )}`;
+        window.location.href = mailtoLink;
+        setToastType('success');
+        setToastMessage('Opening your email client to send the message directly!');
+        setIsSubmitting(false);
+        return;
+      }
+
+      // Send via Web3Forms free API
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          from_name: `${formData.name} via Portfolio`,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setToastType('success');
+        setToastMessage(`Thank you, ${formData.name}! Your message has been sent to Raja's email.`);
+        setFormData({ name: '', email: '', subject: '', message: '' });
+        setErrors({});
+      } else {
+        setToastType('error');
+        setToastMessage(data.message || 'Unable to send message. Please try again.');
+      }
+    } catch {
+      setToastType('error');
+      setToastMessage('Network error. Opening email client as backup...');
+      window.location.href = `mailto:${personalInfo.email}?subject=${encodeURIComponent(
+        formData.subject
+      )}&body=${encodeURIComponent(formData.message)}`;
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(personalInfo.email);
     setCopiedEmail(true);
+    setToastType('success');
     setToastMessage('Email address copied to clipboard!');
     setTimeout(() => setCopiedEmail(false), 3000);
   };
@@ -291,6 +340,7 @@ export const Contact: React.FC = () => {
       <Toast
         isVisible={!!toastMessage}
         message={toastMessage || ''}
+        type={toastType}
         onClose={() => setToastMessage(null)}
       />
     </section>

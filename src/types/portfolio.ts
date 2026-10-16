@@ -11,6 +11,7 @@ export interface PersonalInfo {
   twitter?: string;
   resumeUrl: string;
   availability: 'Available for Hire' | 'Working on Projects' | 'Open to Collaboration';
+  contactFormKey?: string;
 }
 
 export interface SkillItem {

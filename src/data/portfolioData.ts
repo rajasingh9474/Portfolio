@@ -40,7 +40,9 @@ export const personalInfo: PersonalInfo = {
   linkedin: "https://www.linkedin.com/in/raja-kumar-singh9474",
   twitter: "https://x.com/HYPERRAJA33",
   resumeUrl: "#", // Add link to your PDF or Google Drive resume
-  availability: "Available for Hire"
+  availability: "Available for Hire",
+  // Free Web3Forms Access Key (Get one in 5 seconds at https://web3forms.com):
+  contactFormKey: "" 
 };
 
 export const quickStats: StatItem[] = [
