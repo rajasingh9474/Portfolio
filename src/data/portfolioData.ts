@@ -101,6 +101,22 @@ export const skillCategories: SkillCategory[] = [
 
 export const projectsData: Project[] = [
   {
+    id: "project-scheme-finder",
+    title: "Scheme Finder — Citizen Welfare & Subsidy Portal",
+    category: "Full Stack",
+    description: "A comprehensive citizen-centric platform to discover 2,500+ Central and State Government welfare schemes across India with instant AI-powered eligibility checks, document checklists, and direct official application links.",
+    image: "https://images.unsplash.com/photo-1532375810709-75b1da00537c?auto=format&fit=crop&w=1200&q=80",
+    techStack: ["Next.js", "TypeScript", "Tailwind CSS", "AI Assistant", "Lucide React", "Vercel"],
+    liveUrl: "https://scheme-finder-app.vercel.app",
+    githubUrl: "https://github.com/rajasingh9474",
+    featured: true,
+    highlights: [
+      "Indexed 2,500+ Central & State welfare schemes across 28 states",
+      "Instant AI Scheme Sahayak eligibility check & document guidance",
+      "Bilingual interface (English & Hindi) with zero-login access"
+    ]
+  },
+  {
     id: "project-1",
     title: "ApexFlow — Modern Task Orchestration",
     category: "Full Stack",
@@ -108,7 +124,7 @@ export const projectsData: Project[] = [
     image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=80",
     techStack: ["Next.js 14", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL", "Socket.io"],
     liveUrl: "https://apexflow-demo.vercel.app",
-    githubUrl: "https://github.com/alexrivera-dev/apexflow",
+    githubUrl: "https://github.com/rajasingh9474",
     featured: true,
     highlights: ["Over 2,000 monthly active users", "Sub-100ms real-time latency", "Role-based access control"]
   },
@@ -120,7 +136,7 @@ export const projectsData: Project[] = [
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
     techStack: ["React", "TypeScript", "Tailwind CSS", "Recharts", "Framer Motion"],
     liveUrl: "https://pulseanalytics-demo.vercel.app",
-    githubUrl: "https://github.com/alexrivera-dev/pulse-analytics",
+    githubUrl: "https://github.com/rajasingh9474",
     featured: true,
     highlights: ["Processes 10k data points/sec", "Configurable widget grid", "99.9% uptime monitoring"]
   },
@@ -132,7 +148,7 @@ export const projectsData: Project[] = [
     image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80",
     techStack: ["Python", "FastAPI", "React", "Tailwind CSS", "LangChain", "Pinecone"],
     liveUrl: "https://neurodoc-ai.vercel.app",
-    githubUrl: "https://github.com/alexrivera-dev/neurodoc-ai",
+    githubUrl: "https://github.com/rajasingh9474",
     featured: true,
     highlights: ["RAG architecture with hybrid search", "Automated PDF citation tagging", "Export to Notion & Markdown"]
   },
@@ -144,7 +160,7 @@ export const projectsData: Project[] = [
     image: "https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=1200&q=80",
     techStack: ["React", "TypeScript", "Tailwind CSS", "Radix UI", "Storybook"],
     liveUrl: "https://glasscraft-ui.vercel.app",
-    githubUrl: "https://github.com/alexrivera-dev/glasscraft-ui",
+    githubUrl: "https://github.com/rajasingh9474",
     featured: false,
     highlights: ["WAI-ARIA compliant", "Zero runtime overhead", "50+ pre-built components"]
   }
