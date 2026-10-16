@@ -70,7 +70,8 @@ export const Contact: React.FC = () => {
     setIsSubmitting(true);
 
     try {
-      const accessKey = personalInfo.contactFormKey?.trim();
+      const envKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+      const accessKey = (envKey || personalInfo.contactFormKey || '').trim();
 
       if (!accessKey) {
         // Fallback: If access key is not set yet, construct mailto link
